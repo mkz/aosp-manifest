@@ -13,27 +13,29 @@
 -->
 
   <remote  name="aosp"
-           fetch=".."
+           fetch="https://android.googlesource.com/"
            review="https://android-review.googlesource.com/" />
+  <remote  name="mkz"
+           fetch="https://github.com/mkz" />
   <default revision="main"
            remote="aosp"
            sync-j="4" />
 
-  <manifest-server url="http://android-smartsync.corp.google.com/android.googlesource.com/manifestserver" />
+<!--  <manifest-server url="http://android-smartsync.corp.google.com/android.googlesource.com/manifestserver" />-->
 
-  <superproject name="platform/superproject" remote="aosp" revision="master-art" />
+<!--  <superproject name="platform/superproject" remote="aosp" revision="master-art" />-->
 
 <!--
   ART module. These are the projects that are unique to ART.
 -->
-  <project path="art" name="platform/art" groups="pdk" />
+  <project path="art" name="art" groups="pdk" remote="mkz" revision="ohos-art" />
   <project path="external/apache-xml" name="platform/external/apache-xml" groups="pdk" />
   <project path="external/boringssl" name="platform/external/boringssl" groups="pdk" />
   <project path="external/bouncycastle" name="platform/external/bouncycastle" groups="pdk" />
   <project path="external/oj-libjdwp" name="platform/external/oj-libjdwp" groups="pdk" />
   <project path="external/okhttp" name="platform/external/okhttp" groups="pdk" />
-  <project path="libcore" name="platform/libcore" groups="pdk" />
-  <project path="libnativehelper" name="platform/libnativehelper" groups="pdk" />
+  <project path="libcore" name="libcore" groups="pdk" remote="mkz" revision="ohos-art" />
+  <project path="libnativehelper" name="libnativehelper" groups="pdk" remote="mkz" revision="ohos-art" />
 
 <!--
   ART internal dependencies. These are the projects the ART module will include
@@ -52,7 +54,7 @@
   <project path="external/tinyxml2" name="platform/external/tinyxml2" groups="pdk" />
   <project path="external/vixl" name="platform/external/vixl" groups="pdk" />
   <project path="external/zlib" name="platform/external/zlib" groups="pdk" />
-  <project path="system/libbase" name="platform/system/libbase" groups="pdk" />
+  <project path="system/libbase" name="platform/system/libbase" groups="pdk" remote="mkz" revision="ohos-art" />
     <!-- Dependency of libbase -->
     <project path="external/fmtlib" name="platform/external/fmtlib" groups="pdk" />
   <project path="system/libprocinfo" name="platform/system/libprocinfo" groups="pdk" />
@@ -194,6 +196,7 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
+  <project path="build/cmake" name="art-cmake" groups="pdk" remote="mkz" revision="ohos-art" />
   <project path="build/blueprint" name="platform/build/blueprint" groups="pdk,tradefed" />
   <project path="build/release" name="platform/build/release" groups="pdk,tradefed" />
   <project path="build/soong" name="platform/build/soong" groups="pdk,tradefed">
